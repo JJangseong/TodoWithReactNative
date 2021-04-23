@@ -1,13 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Todo from "./src/screens/Todo";
+import React from 'react'
+import Todo from './src/screens/Todo'
 
 export default function App() {
-  return (
-    <Todo />
-  );
+	return <Todo />
 }
-
-
-
