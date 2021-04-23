@@ -21,13 +21,14 @@ function TodoItem({ onToggle, todo, onRemove }: TodoItemProps) {
 	)
 }
 
-export default TodoItem
+export default React.memo(TodoItem)
 
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
-		justifyContent: 'center',
+		justifyContent: 'space-between',
 		alignItems: 'center',
+		marginBottom: 8,
 	},
 	completed: {
 		textDecorationLine: 'line-through',

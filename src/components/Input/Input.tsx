@@ -13,7 +13,7 @@ function Input({ value, onChangeText }: InputProps) {
 	)
 }
 
-export default Input
+export default React.memo(Input)
 
 const styles = StyleSheet.create({
 	input: {

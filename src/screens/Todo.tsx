@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import { TodoDataType } from '../types/todo'
@@ -42,14 +42,16 @@ function Todo({}: TodoProps) {
 		)
 	}
 
-	const onRemove = (id: number) => {
-		console.log(id)
-		setTodos(todos.filter(todo => todo.id !== id))
-	}
+	const onRemove = useCallback(
+		(id: number) => {
+			setTodos(todos.filter(todo => todo.id !== id))
+		},
+		[todos],
+	)
 
 	return (
 		<View style={styles.container}>
-			<Text>Hello World!</Text>
+			<Text>Welcome My Todo</Text>
 			<View style={styles.inputContainer}>
 				<Input onChangeText={onChangeText} value={value} />
 				<Button label="저장" onPress={onSave} />
@@ -71,11 +73,12 @@ const styles = StyleSheet.create({
 	container: {
 		justifyContent: 'center',
 		alignItems: 'center',
-		height: '100vh',
+		height: '100%',
+		paddingTop: 44,
 	},
 	inputContainer: {
 		flexDirection: 'row',
-		width: '100vw',
+		width: '100%',
 		padding: 8,
 		justifyContent: 'center',
 		alignItems: 'center',
