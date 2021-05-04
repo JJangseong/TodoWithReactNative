@@ -37,21 +37,6 @@ function Todo({}: TodoProps) {
 		return todos.length === 0 ? 1 : todos[todos.length - 1].id + 1
 	}
 
-	const onToggle = (id: number) => {
-		setTodos(
-			todos.map(todo => {
-				return todo.id === id ? { isCompleted: !todo.isCompleted, id: todo.id, content: todo.content } : { ...todo }
-			}),
-		)
-	}
-
-	const onRemove = useCallback(
-		(id: number) => {
-			setTodos(todos.filter(todo => todo.id !== id))
-		},
-		[todos],
-	)
-
 	return (
 		<View style={styles.container}>
 			<Text>Welcome My Todo</Text>
