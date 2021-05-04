@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { GestureResponderEvent, StyleSheet, Text, TouchableOpacity } from 'react-native'
 
 export type ButtonProps = {
 	label: string
-	onPress(): void
+	onPress(_: GestureResponderEvent): void
 }
 
 function Button({ label, onPress }: ButtonProps) {

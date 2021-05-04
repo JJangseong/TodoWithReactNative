@@ -12,10 +12,10 @@ export type TodoItemProps = {
 function TodoItem({ onToggle, item, onDelete }: TodoItemProps) {
 	return (
 		<View style={styles.container}>
-			<Text style={styles[item.isCompleted ? 'completed' : 'unCompleted']} onPress={() => onToggle(item.id)}>
+			<Text style={styles[item.isCompleted ? 'completed' : 'unCompleted']} onPress={onToggle(item.id)}>
 				{item.content}
 			</Text>
-			<Button label="삭제" onPress={() => onDelete(item.id)} />
+			<Button label="삭제" onPress={onDelete(item.id)} />
 		</View>
 	)
 }
