@@ -1,10 +1,13 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import { TodoDataType } from '../types/todo'
 import Button from '../components/Button'
 import Input from '../components/Input'
 import TodoItem from '../components/TodoItem'
+import { todoState } from '../../App'
+import { useRecoilState } from 'recoil'
+import TodoList from '../components/TodoList'
 
 const TODO_DATA: TodoDataType[] = [
 	{
@@ -17,7 +20,7 @@ const TODO_DATA: TodoDataType[] = [
 export type TodoProps = {}
 
 function Todo({}: TodoProps) {
-	const [todos, setTodos] = useState(TODO_DATA)
+	const [todos, setTodos] = useRecoilState(todoState)
 	const [value, setValue] = useState('')
 
 	const onChangeText = (value: string) => {
@@ -56,13 +59,7 @@ function Todo({}: TodoProps) {
 				<Input onChangeText={onChangeText} value={value} />
 				<Button label="저장" onPress={onSave} />
 			</View>
-			<FlatList<TodoDataType>
-				data={todos}
-				keyExtractor={todo => todo.id.toString()}
-				renderItem={({ item }) => {
-					return <TodoItem onToggle={onToggle} todo={item} onRemove={onRemove} />
-				}}
-			/>
+			<TodoList />
 		</View>
 	)
 }

@@ -1,22 +1,21 @@
 import React from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import { Text, StyleSheet, View, GestureResponderEvent } from 'react-native'
 import { TodoDataType } from '../../types/todo'
 import Button from '../Button'
 
 export type TodoItemProps = {
-	onToggle(id: number): void
-	onRemove(id: number): void
-	todo: TodoDataType
+	onToggle: (id: number) => (_: GestureResponderEvent) => void
+	onDelete: (id: number) => (_: GestureResponderEvent) => void
+	item: TodoDataType
 }
 
-function TodoItem({ onToggle, todo, onRemove }: TodoItemProps) {
-	console.log(todo.isCompleted)
+function TodoItem({ onToggle, item, onDelete }: TodoItemProps) {
 	return (
 		<View style={styles.container}>
-			<Text style={styles[todo.isCompleted ? 'completed' : 'unCompleted']} onPress={() => onToggle(todo.id)}>
-				{todo.content}
+			<Text style={styles[item.isCompleted ? 'completed' : 'unCompleted']} onPress={() => onToggle(item.id)}>
+				{item.content}
 			</Text>
-			<Button label="삭제" onPress={() => onRemove(todo.id)} />
+			<Button label="삭제" onPress={() => onDelete(item.id)} />
 		</View>
 	)
 }
